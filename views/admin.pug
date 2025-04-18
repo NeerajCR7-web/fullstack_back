@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  h1 Admin Dashboard
+
+  h2 Add Project
+  form(action="/admin/add-project", method="POST")
+    label(for="title") Title:
+    input(type="text", name="title", required)
+    label(for="description") Description:
+    textarea(name="description", required)
+    label(for="imageUrl") Image URL:
+    input(type="text", name="imageUrl", required)
+    label(for="projectUrl") Project URL:
+    input(type="text", name="projectUrl", required)
+    button(type="submit") Add Project
+
+  h2 Add Skill
+  form(action="/admin/add-skill", method="POST")
+    label(for="name") Skill Name:
+    input(type="text", name="name", required)
+    label(for="proficiency") Proficiency:
+    select(name="proficiency", required)
+      option(value="Beginner") Beginner
+      option(value="Intermediate") Intermediate
+      option(value="Advanced") Advanced
+    button(type="submit") Add Skill
+
+  h2 Projects
+  each project in projects
+    div.project
+      h3= project.title
+      form(action=`/admin/delete-project/${project._id}`, method="POST") 
+        button(type="submit") Delete Project
+
+  h2 Skills
+  each skill in skills
+    div.skill
+      p= `${skill.name} - ${skill.proficiency}`
+      form(action=`/admin/delete-skill/${skill._id}`, method="POST")
+        button(type="submit") Delete Skill

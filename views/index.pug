@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='public/css/styles.css')
+  .container
+    h1 Welcome to My Portfolio
+
+    section.projects
+      h2 Projects
+      .project-grid
+        each project in projects
+          .project-card
+            img(src=project.imageUrl, alt=project.title)
+            .project-content
+              h3= project.title
+              p= project.description
+              a(href=project.projectUrl, target="_blank").btn View Project   
+              //- https://stackoverflow.com/questions/19588708/how-to-use-both-onclick-and-target-blank
+
+    section.skills
+      h2 Skills
+      .skills-grid
+        each skill in skills
+          .skill-card
+            h3= skill.name
+            p= `Proficiency: ${skill.proficiency}`
