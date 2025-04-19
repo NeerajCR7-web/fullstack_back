@@ -16,7 +16,9 @@ app.use((req, res, next) => {
 });
 
 // ─── 2. Enable CORS for all origins (for testing) ─────────────────────────────
-app.use(cors());
+app.use(cors({
+  origin: 'https://fullstack-front-ten.vercel.app'
+}));
 
 // ─── 3. Connect to MongoDB ─────────────────────────────────────────────────────
 mongoose.connect(process.env.MONGODB_URI)
